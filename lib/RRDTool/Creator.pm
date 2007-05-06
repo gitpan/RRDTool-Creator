@@ -27,7 +27,7 @@ use RRDTool::OO ;
 use strict ;
 use warnings ;
 
-our $VERSION = "0.2" ; # $LastChangedRevision: 170 $
+our $VERSION = "0.3" ; # $LastChangedRevision: 170 $
 $Carp::CarpLevel = 1;
 
 my $InSeconds = {
@@ -242,23 +242,23 @@ sub create
 __END__
 =head1 NAME
 
-RRDTool::Creator - Creators for round robin databases (RRD)
+C<RRDTool::Creator> - Creators for round robin databases (RRD)
 
 =head1 COMPONENTS
 
-RRDTool::Creator - A generic abstract creator for round robin databases (RRD)
+C<RRDTool::Creator> - A generic abstract creator for round robin databases (RRD)
 
-RRDTool::Creator::HourPDP - creates a RRD with a default archive of primary points for an hour
+C<RRDTool::Creator::HourPDP> - creates a RRD with a default archive of primary points for an hour
 
-RRDTool::Creator::DayPDP - creates a RRD with a default archive of primary points for a day
+C<RRDTool::Creator::DayPDP> - creates a RRD with a default archive of primary points for a day
 
-RRDTool::Creator::WeekPDP - creates a RRD with a default archive of primary points for a week
+C<RRDTool::Creator::WeekPDP> - creates a RRD with a default archive of primary points for a week
 
-RRDTool::Creator::MonthPDP - creates a RRD with a default archive of primary points for a month
+C<RRDTool::Creator::MonthPDP> - creates a RRD with a default archive of primary points for a month
 
-RRDTool::Creator::QuarterPDP - creates a RRD with a default archive of primary points for a quarter
+C<RRDTool::Creator::QuarterPDP> - creates a RRD with a default archive of primary points for a quarter
 
-RRDTool::Creator::YearPDP - creates a RRD with a default archive of primary points for a year
+C<RRDTool::Creator::YearPDP> - creates a RRD with a default archive of primary points for a year
 
 =head1 SYNOPSIS
 
@@ -293,15 +293,15 @@ RRDTool::Creator::YearPDP - creates a RRD with a default archive of primary poin
     
 =head1 DESCRIPTION
 
-The RRDTool::Creator objects are specific creators for different kind of RRD files. 
-They are based on the Round Robin Database Tool (L<http://www.rrdtool.org>) and on the Perl Module RRDTool::OO.
+The C<RRDTool::Creator> objects are specific creators for different kind of RRD files. 
+They are based on the Round Robin Database Tool (L<http://www.rrdtool.org>) and on the Perl module L<RRDTool::OO>.
 
 =head1 NOTES
 
-RRDTool::Creator tries to be compatible with both the official RRDTool documentation 
-and the RRDTool::OO module. 
+C<RRDTool::Creator> tries to be compatible with both the official RRDTool documentation 
+and the C<RRDTool::OO> module. 
 It is why some functions and some arguments have two possible names
-(in this case, the main name is conform to the official documentation and the auxiliary one is for compatibility with the RRDTool::OO module).
+(in this case, the main name is conform to the official documentation and the auxiliary one is for compatibility with the C<RRDTool::OO> module).
 
 =cut
 
@@ -312,66 +312,75 @@ It is why some functions and some arguments have two possible names
 Add a data source in the RRD specifications.
 Its arguments are :
 
-=over 2
+=over 4
 
-=item ds_name (auxiliary name: name)
+=item B<ds_name> (auxiliary name: B<name>)
 
-(mandatory) the name of the data source.
+(I<mandatory>) The name of the data source.
 
-=item DST (auxiliary name: type)
+=item B<DST> (auxiliary name: B<type>)
 
-(mandatory) the data source type : GAUGE, COUNTER, DERIVE or ABSOLUTE (see L<http://www.rrdtool.org>).
+(I<mandatory>) The data source type : C<GAUGE>, C<COUNTER>, C<DERIVE> or C<ABSOLUTE> (see L<http://www.rrdtool.org>).
 
-=item heartbeat 
+=item B<heartbeat>
 
-(optionnal) maximum number of seconds that may pass between two updates of this data source before the value of the data source is assumed to be *UNKNOWN*.
+(I<optionnal>) The maximum number of seconds that may pass between two updates of this data source before the value of the data source is assumed to be *UNKNOWN*.
 Default is 2*step.
 
-=item min
+=item B<min>
 
-(optionnal) Expected minimun value for data supplied by a data source. 
+(I<optionnal>) The expected minimum value for data supplied by a data source. 
 Any value outside the defined range will be regarded as *UNKNOWN*. 
 Default is "U" for unknown.
 
-=item max
+=item B<max>
 
-(optionnal) Expected maximun value for data supplied by a data source. 
+(I<optionnal>) The expected maximum value for data supplied by a data source. 
 Any value outside the defined range will be regarded as *UNKNOWN*. 
 Default is "U" for unknown.
+
+    $creator->add_DS(
+                -ds_name => "cpu"
+                , -DST => "GAUGE"
+                , -min => 0
+                , -max => 100
+                ) ;
 
 =back
 
 =head2 add_compute_DS (not yet implemented)
 
-Add a data source with computed primary data points (it is a DS with DST equal to COMPUTE) in the RRD specifications.
+Add a data source with computed primary data points (it is a DS with DST equal to C<COMPUTE>) in the RRD specifications.
 Its arguments are :
 
-=over 2
+=over 4
 
-=item ds_name (auxiliary name: name)
+=item B<ds_name> (auxiliary name: B<name>)
 
-(mandatory) the name of the data source.
+(I<mandatory>) The name of the data source.
 
-=item rpn_expression
+=item B<rpn_expression>
 
-(mandatory) RPN expression that defines formula to compute PDP of this DS.
+(I<mandatory>) RPN expression that defines formula to compute PDP of this DS.
 
 =back
 
-=head2 add_RRA (auxiliary name: add_archive)
+=head2 B<add_RRA> (auxiliary name: B<add_archive>)
 
 Add a round robin archive in the RRD specifications.
 
-=over 2
+=over 4
 
-=item duration
+=item B<duration>
 
-(mandatory) The duration of the archive.
+(I<mandatory>) The duration of the archive.
 Possible values are : "day", "week", "month", "quarter" and "year".
 
-=item xff
+=item B<xff>
 
-(optionnal) The xfiles factor (see <http://www.rrdtool.org>)
+(I<optionnal>) The xfiles factor (see <http://www.rrdtool.org>)
+
+    $creator->add_RRA(-duration => "day") ;
 
 =back
 
@@ -379,42 +388,53 @@ Possible values are : "day", "week", "month", "quarter" and "year".
 
 Add some global attributes in the RRD specifications.
 
-=over 2
+=over 4
 
-=item CF (auxiliary name: cfunc)
+=item B<CF> (auxiliary name: B<cfunc>)
 
-Add a consolidation function (AVERAGE, MIN, MAX, LAST... - see <http://www.rrdtool.org>), 
+Add a consolidation function (C<AVERAGE>, C<MIN>, C<MAX>, C<LAST>... - see <http://www.rrdtool.org>), 
 for each RRA (except the default RRA) in the RRD specifications.
+
+    $creator->add(-CF => "AVERAGE") ;
 
 =back
 
-=head2 compile
+=head2 B<compile>
 
-Compute the argument for the function 'create' of the underlaying RRDTool::OO object.
-Return this argument.
+Compute the argument for the function C<create> of the underlaying RRDTool::OO object.
+Return this argument (a list). This function is useful only for debugging.
 
-=head2 create
+    @args = $creator->compile() ;
+
+=head2 B<create>
 
 Create the RRD on the disk.
 
-=over 2
+=over 4
 
-=item filename (auxiliary name: file)
+=item B<filename> (auxiliary name: B<file>)
 
-(mandatory) The name of the file to create.
+(I<mandatory>) The name of the file to create.
 
-=item OO_create_arg
+=item B<OO_create_arg>
 
-(optionnal) The argument passed to the function create of the underlaying RRDTool::OO object.
-If this argument isn't provided, its value is compiled from the current stored data.
+(I<optionnal>) The argument passed to the function create of the underlaying RRDTool::OO object
+(this is the value returned by the previous function compile).
+In normal case, this argument isn't provided, and its value is compiled from the current stored data.
+
+    $creator->create(-filename => "/tmp/15s.rrd") ;
+
+    @args = $creator->compile() ;
+	# possible manual modification on C<args> here...
+    $creator->create(-filename => "/tmp/15s.rrd", -OO_create_arg => \@args) ;
 
 =back
 
 =head1 SUB-OBJECTS
 
-Each sub-objects of RRDTool::Creator creates a RRD with one default archive (RRA) made of primary data points (PDP).
+Each sub-objects of C<RRDTool::Creator> creates a RRD with one default archive (RRA) made of primary data points (PDP).
 More RAA can then be added.
-The constructor neads an argument named 'step' which is the period of acquisition. The time unit of the step depends of the sub-object.
+The constructor neads an argument named C<step> which is the period of acquisition. The time unit of the step depends of the sub-object.
 
 =head2 RRDTool::Creator::HourPDP
 
@@ -554,7 +574,9 @@ with the aim of graphing max values weekly and yearly :
     $creator->add_RRA(-duration => "year") ;
     $creator->create(-filename => "df.rrd") ;
 
-=head1 AUTHOR
+=head1 SEE ALSO
+
+L<http://www.rrdtool.org/doc>, L<RRDTool::OO>=head1 AUTHOR
 
 Jacquelin Charbonnel, C<< <jacquelin.charbonnel at math.cnrs.fr> >>
 
