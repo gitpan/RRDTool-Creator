@@ -4,15 +4,15 @@ package RRDTool::Creator ;
 # 
 #           Jacquelin Charbonnel - CNRS/LAREMA
 #  
-#   $Id: Creator.pm 170 2007-04-24 20:15:02Z jaclin $
+#   $Id: Creator.pm 225 2007-05-30 16:35:10Z jaclin $
 #   
 # ----
 #  
 #   A generic abstract creator for round robin databases (RRD)
 # 
 # ----
-#   $LastChangedDate: 2007-04-24 22:15:02 +0200 (Tue, 24 Apr 2007) $ 
-#   $LastChangedRevision: 170 $
+#   $LastChangedDate: 2007-05-30 18:35:10 +0200 (Wed, 30 May 2007) $ 
+#   $LastChangedRevision: 225 $
 #   $LastChangedBy: jaclin $
 #   $URL: https://svn.math.cnrs.fr/jaclin/src/pm/RRDTool-Creator/Creator.pm $
 #  
@@ -27,7 +27,7 @@ use RRDTool::OO ;
 use strict ;
 use warnings ;
 
-our $VERSION = "0.3" ; # $LastChangedRevision: 170 $
+our $VERSION = "0.4" ; # $LastChangedRevision: 225 $
 $Carp::CarpLevel = 1;
 
 my $InSeconds = {
@@ -262,7 +262,7 @@ C<RRDTool::Creator::YearPDP> - creates a RRD with a default archive of primary p
 
 =head1 SYNOPSIS
 
-  use RRDTool::Creator::DayPDP ;
+  use RRDTool::Creator::DayPDP ; 
 
   # make a creator
   $creator = new RRDTool::Creator::DayPDP(-step => "30mn") ; 
@@ -402,7 +402,8 @@ for each RRA (except the default RRA) in the RRD specifications.
 =head2 B<compile>
 
 Compute the argument for the function C<create> of the underlaying RRDTool::OO object.
-Return this argument (a list). This function is useful only for debugging.
+Useful for debugging, this function also allows to customize the command passed to rrdtool.
+Return this argument (a list). 
 
     @args = $creator->compile() ;
 
@@ -419,13 +420,15 @@ Create the RRD on the disk.
 =item B<OO_create_arg>
 
 (I<optionnal>) The argument passed to the function create of the underlaying RRDTool::OO object
-(this is the value returned by the previous function compile).
+(this is the value returned by the previous function C<compile>).
 In normal case, this argument isn't provided, and its value is compiled from the current stored data.
 
     $creator->create(-filename => "/tmp/15s.rrd") ;
 
+which can be break up to :
+
     @args = $creator->compile() ;
-	# possible manual modification on C<args> here...
+    # possible manual modification on @args here...
     $creator->create(-filename => "/tmp/15s.rrd", -OO_create_arg => \@args) ;
 
 =back
@@ -576,7 +579,10 @@ with the aim of graphing max values weekly and yearly :
 
 =head1 SEE ALSO
 
-L<http://www.rrdtool.org/doc>, L<RRDTool::OO>=head1 AUTHOR
+L<http://www.rrdtool.org/doc>, L<RRDTool::OO>
+
+
+=head1 AUTHOR
 
 Jacquelin Charbonnel, C<< <jacquelin.charbonnel at math.cnrs.fr> >>
 
@@ -604,7 +610,7 @@ L<http://annocpan.org/dist/RRDTool-Creator>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/r/RRDTool-Creator>
+L<http://cpanratings.perl.org/d/RRDTool-Creator>
 
 =item * RT: CPAN's request tracker
 

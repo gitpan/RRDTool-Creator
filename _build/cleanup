@@ -1,5 +1,5 @@
 {
-          'RRDTool-Creator-0.3' => 1,
           'RRDTool-Creator-*' => 1,
+          'RRDTool-Creator-0.4' => 1,
           'blib' => 1
         }
