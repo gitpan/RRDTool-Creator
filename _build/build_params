@@ -14,10 +14,10 @@
             'recommends' => {},
             'scripts' => undef,
             'dist_version' => bless( {
-                                       'original' => '0.4',
+                                       'original' => '0.5',
                                        'version' => [
                                                       0,
-                                                      400
+                                                      500
                                                     ]
                                      }, 'Module::Build::Version' ),
             'pod_files' => undef,
@@ -32,7 +32,7 @@
                                        'conflicts',
                                        'recommends'
                                      ],
-            'base_dir' => '/.local/tmp/cpan/RRDTool-Creator-0.4',
+            'base_dir' => '/.local/tmp/cpan/RRDTool-Creator-0.5',
             'allow_mb_mismatch' => 0,
             'xs_files' => undef,
             'destdir' => undef,
@@ -168,7 +168,7 @@
                                   'pod',
                                   'script'
                                 ],
-            'orig_dir' => '/.local/tmp/cpan/RRDTool-Creator-0.4',
+            'orig_dir' => '/.local/tmp/cpan/RRDTool-Creator-0.5',
             'include_dirs' => [],
             'installdirs' => 'site',
             'create_makefile_pl' => undef,

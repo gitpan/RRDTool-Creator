@@ -4,3 +4,5 @@ Revision history for RRDTool-Creator
        First version, released on an unsuspecting world.
 0.3    2007-05-06
        Documentation  
+0.5    2007-05-31
+       Correct a bug about RRA definition
