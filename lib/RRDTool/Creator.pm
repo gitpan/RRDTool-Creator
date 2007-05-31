@@ -4,15 +4,15 @@ package RRDTool::Creator ;
 # 
 #           Jacquelin Charbonnel - CNRS/LAREMA
 #  
-#   $Id: Creator.pm 228 2007-05-31 06:57:34Z jaclin $
+#   $Id: Creator.pm 229 2007-05-31 08:32:01Z jaclin $
 #   
 # ----
 #  
 #   A generic abstract creator for round robin databases (RRD)
 # 
 # ----
-#   $LastChangedDate: 2007-05-31 08:57:34 +0200 (Thu, 31 May 2007) $ 
-#   $LastChangedRevision: 228 $
+#   $LastChangedDate: 2007-05-31 10:32:01 +0200 (Thu, 31 May 2007) $ 
+#   $LastChangedRevision: 229 $
 #   $LastChangedBy: jaclin $
 #   $URL: https://svn.math.cnrs.fr/jaclin/src/pm/RRDTool-Creator/Creator.pm $
 #  
@@ -27,7 +27,7 @@ use RRDTool::OO ;
 use strict ;
 use warnings ;
 
-our $VERSION = "0.5" ; # $LastChangedRevision: 228 $
+our $VERSION = "0.6" ; # $LastChangedRevision: 229 $
 $Carp::CarpLevel = 1;
 
 my $InSeconds = {
@@ -36,9 +36,9 @@ my $InSeconds = {
     , "h" => 60*60
     , "d" => 60*60*24
     , "w" => 60*60*24*7
-    , "m" => 60*60*24*30
-    , "q" => 60*60*24*30*3
-    , "y" => 60*60*24*365
+    , "m" => 60*60*24*30        # supposed 30 days
+    , "q" => 60*60*24*30*3      # 3 months
+    , "y" => 60*60*24*30*12     # 12 months
     } ;
 
 sub _getkey
@@ -210,7 +210,7 @@ push(@arg,("archive",
         push(@arg,("archive", 
             { 
                 "cfunc" => $cfunc
-                , "cpoints" => $cpoint
+                , "cpoints" => $InSeconds->{substr($cpoint->{"duration"},0,1)}/($this->{"step"}*$this->{"rows"})
                 , "rows" => $this->{"rows"}
             }
             )
