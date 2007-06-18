@@ -4,15 +4,15 @@ package RRDTool::Creator ;
 # 
 #           Jacquelin Charbonnel - CNRS/LAREMA
 #  
-#   $Id: Creator.pm 229 2007-05-31 08:32:01Z jaclin $
+#   $Id: Creator.pm 280 2007-06-18 21:01:42Z jaclin $
 #   
 # ----
 #  
 #   A generic abstract creator for round robin databases (RRD)
 # 
 # ----
-#   $LastChangedDate: 2007-05-31 10:32:01 +0200 (Thu, 31 May 2007) $ 
-#   $LastChangedRevision: 229 $
+#   $LastChangedDate: 2007-06-18 23:01:42 +0200 (Mon, 18 Jun 2007) $ 
+#   $LastChangedRevision: 280 $
 #   $LastChangedBy: jaclin $
 #   $URL: https://svn.math.cnrs.fr/jaclin/src/pm/RRDTool-Creator/Creator.pm $
 #  
@@ -27,7 +27,7 @@ use RRDTool::OO ;
 use strict ;
 use warnings ;
 
-our $VERSION = "0.6" ; # $LastChangedRevision: 229 $
+our $VERSION = "0.7" ; # $LastChangedRevision: 280 $
 $Carp::CarpLevel = 1;
 
 my $InSeconds = {
@@ -57,7 +57,7 @@ sub _inSeconds
   my($duration,$allowed) = @_ ;
   $Carp::CarpLevel = 2 ;
   
-  my ($num,$unit) = $duration=~/^\s*(\d)+\s*([a-zA-Z]+)$/  or return undef ;
+  my ($num,$unit) = $duration=~/^\s*(\d+)\s*([a-zA-Z]+)\s*$/  or return undef ;
   my %allowed = map { $_ => 1 } @$allowed ;
   
   croak "unit '$unit' not allowed" unless exists $allowed{lc($unit)} ;
