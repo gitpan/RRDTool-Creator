@@ -35,7 +35,7 @@ sub new
   my ($step) ;
 
   
-  my $this = new RRDTool::Creator(["s","mn","h","d"],%h) ;
+  my $this = _new RRDTool::Creator(["s","mn","h","d"],%h) ;
   
   $this->{"rows"} = int(3600*24*7/$this->{"step"}) ;
   $this->{"allowed_RRA_duration"} = {
@@ -48,13 +48,17 @@ sub new
   return $this ;
 }
 
-=head2 RRDTool::Creator::WeekPDP
+=head1 RRDTool::Creator::WeekPDP
 
 The default RRA stores primary data points for a week.
 More RRA can be added for a month, a quarter and a year.
 The created RRD is for an acquisition period much less than a week, typically about some hours.
-So, the natural step unit for its constructor argument is the hour(h), although second(s), minute(mn) and day(d) are allowed.
-    
+
+=head2 new
+
+This constructor neads an argument named C<step> which is the period of acquisition.
+The natural step unit is the hour(h), although second(s), minute(mn) and day(d) are allowed.
+
     $creator = RRDTool::Creator::WeekPDP(-step => "4h") ;
     $creator->add_RRA(-duration => "month") ;
     $creator->add_RRA(-duration => "quarter") ;

@@ -1,6 +1,6 @@
 ---
 name: RRDTool-Creator
-version: 0.7
+version: 0.8
 author:
   - 'Jacquelin Charbonnel <jacquelin.charbonnel at math.cnrs.fr>'
 abstract: you bet
@@ -15,7 +15,7 @@ build_requires:
 provides:
   RRDTool::Creator:
     file: lib/RRDTool/Creator.pm
-    version: 0.7
+    version: 0.8
   RRDTool::Creator::DayPDP:
     file: lib/RRDTool/Creator/DayPDP.pm
     version: 0.1

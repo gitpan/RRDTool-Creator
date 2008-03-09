@@ -4,15 +4,15 @@ package RRDTool::Creator ;
 # 
 #           Jacquelin Charbonnel - CNRS/LAREMA
 #  
-#   $Id: Creator.pm 280 2007-06-18 21:01:42Z jaclin $
+#   $Id: Creator.pm 409 2008-03-09 20:55:41Z jaclin $
 #   
 # ----
 #  
 #   A generic abstract creator for round robin databases (RRD)
 # 
 # ----
-#   $LastChangedDate: 2007-06-18 23:01:42 +0200 (Mon, 18 Jun 2007) $ 
-#   $LastChangedRevision: 280 $
+#   $LastChangedDate: 2008-03-09 21:55:41 +0100 (Sun, 09 Mar 2008) $ 
+#   $LastChangedRevision: 409 $
 #   $LastChangedBy: jaclin $
 #   $URL: https://svn.math.cnrs.fr/jaclin/src/pm/RRDTool-Creator/Creator.pm $
 #  
@@ -27,7 +27,7 @@ use RRDTool::OO ;
 use strict ;
 use warnings ;
 
-our $VERSION = "0.7" ; # $LastChangedRevision: 280 $
+our $VERSION = "0.8" ; # $LastChangedRevision: 409 $
 $Carp::CarpLevel = 1;
 
 my $InSeconds = {
@@ -67,7 +67,7 @@ sub _inSeconds
 }
 
 #--
-sub new
+sub _new
 {
   my($type,$units,%h) = @_ ;
 
