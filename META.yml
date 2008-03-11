@@ -1,6 +1,6 @@
 ---
 name: RRDTool-Creator
-version: 0.8
+version: 0.9
 author:
   - 'Jacquelin Charbonnel <jacquelin.charbonnel at math.cnrs.fr>'
 abstract: you bet
@@ -15,25 +15,25 @@ build_requires:
 provides:
   RRDTool::Creator:
     file: lib/RRDTool/Creator.pm
-    version: 0.8
+    version: 0.9
   RRDTool::Creator::DayPDP:
     file: lib/RRDTool/Creator/DayPDP.pm
-    version: 0.1
+    version: 0.2
   RRDTool::Creator::HourPDP:
     file: lib/RRDTool/Creator/HourPDP.pm
-    version: 0.1
+    version: 0.2
   RRDTool::Creator::MonthPDP:
     file: lib/RRDTool/Creator/MonthPDP.pm
-    version: 0.1
+    version: 0.2
   RRDTool::Creator::QuarterPDP:
     file: lib/RRDTool/Creator/QuarterPDP.pm
-    version: 0.1
+    version: 0.2
   RRDTool::Creator::WeekPDP:
     file: lib/RRDTool/Creator/WeekPDP.pm
-    version: 0.1
+    version: 0.2
   RRDTool::Creator::YearPDP:
     file: lib/RRDTool/Creator/YearPDP.pm
-    version: 0.1
+    version: 0.2
 generated_by: Module::Build version 0.2807
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

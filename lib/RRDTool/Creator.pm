@@ -4,15 +4,15 @@ package RRDTool::Creator ;
 # 
 #           Jacquelin Charbonnel - CNRS/LAREMA
 #  
-#   $Id: Creator.pm 409 2008-03-09 20:55:41Z jaclin $
+#   $Id: Creator.pm 410 2008-03-11 21:45:09Z jaclin $
 #   
 # ----
 #  
 #   A generic abstract creator for round robin databases (RRD)
 # 
 # ----
-#   $LastChangedDate: 2008-03-09 21:55:41 +0100 (Sun, 09 Mar 2008) $ 
-#   $LastChangedRevision: 409 $
+#   $LastChangedDate: 2008-03-11 22:45:09 +0100 (Tue, 11 Mar 2008) $ 
+#   $LastChangedRevision: 410 $
 #   $LastChangedBy: jaclin $
 #   $URL: https://svn.math.cnrs.fr/jaclin/src/pm/RRDTool-Creator/Creator.pm $
 #  
@@ -27,7 +27,7 @@ use RRDTool::OO ;
 use strict ;
 use warnings ;
 
-our $VERSION = "0.8" ; # $LastChangedRevision: 409 $
+our $VERSION = "0.9" ; # $LastChangedRevision: 410 $
 $Carp::CarpLevel = 1;
 
 my $InSeconds = {
@@ -90,7 +90,7 @@ sub _new
 }
 
 #-------------------------------
-sub set_filename
+sub _set_filename
 {
   my($this,$filename) = @_ ;
   $this->{"filename"} = $filename ;
@@ -306,6 +306,10 @@ It is why some functions and some arguments have two possible names
 =cut
 
 =head1 COMMON METHODS
+
+=head2 add_data_source
+
+See add_DS
 
 =head2 add_DS (auxiliary name: add_data_source)
 
