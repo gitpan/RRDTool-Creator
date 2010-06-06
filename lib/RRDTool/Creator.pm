@@ -27,7 +27,7 @@ use RRDTool::OO ;
 use strict ;
 use warnings ;
 
-our $VERSION = "0.9" ; # $LastChangedRevision: 410 $
+our $VERSION = "0.10" ; # $LastChangedRevision: 410 $
 $Carp::CarpLevel = 1;
 
 my $InSeconds = {
@@ -433,7 +433,7 @@ which can be break up to :
 
     @args = $creator->compile() ;
     # possible manual modification on @args here...
-    $creator->create(-filename => "/tmp/15s.rrd", -OO_create_arg => \@args) ;
+    $creator->create(-filename => "/tmp/15s.rrd", OO_create_arg => \@args) ;
 
 =back
 
