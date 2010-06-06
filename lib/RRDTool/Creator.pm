@@ -27,7 +27,7 @@ use RRDTool::OO ;
 use strict ;
 use warnings ;
 
-our $VERSION = "0.9.1" ; # $LastChangedRevision: 410 $
+our $VERSION = "1.0" ; # $LastChangedRevision: 410 $
 $Carp::CarpLevel = 1;
 
 my $InSeconds = {
